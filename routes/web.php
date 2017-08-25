@@ -11,8 +11,20 @@
 |
 */
 
-Route::get('/', function () {
+Route::get('/', function() {
     return view('welcome');
+});
+
+Route::get('organizations', function () {
+    return view('organizations.index');
+});
+
+Route::get('members', function () {
+    return view('members.index');
+});
+
+Route::get('project13s', function () {
+    return view('project13s.index');
 });
 
 Auth::routes();

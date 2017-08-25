@@ -1,0 +1,76 @@
+.btn-10rem {
+    width: 10rem;
+}
+
+.btn-15rem {
+    width: 15rem;
+}
+
+.pad-left-5 {
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+.pad-left-15 {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.blue-label {
+    color: #00f;
+    padding-left: 10px;
+    padding-right: 5px;
+}
+
+.yellow-label {
+    color: #ea0;
+    padding-left: 20px;
+    padding-right: 5px;
+}
+
+.new-row {
+    float: left;
+}
+
+.center-text {
+    text-align: center;
+}
+
+.select-width-100 {
+    width: 100%;
+}
+
+td {
+    white-space: nowrap;
+    padding: 5px;
+}
+
+div .button-row {
+    padding-top: 20px;
+    padding-left: 20px;
+    margin: 0 0;
+}
+
+.error {
+	color: red;
+}
+
+/* Sidebar menu */
+
+.panel-subheading {
+	margin-bottom: 0px;
+	margin-top: 0px;
+	border-width: 0 0 1px 0;
+	border-radius: 0;
+	border-bottom-color: #337ab7;
+}
+
+.panel-subheading-title {
+	margin-bottom: 0px;
+	margin-top: 0px;
+	
+}
+
+.sub-item {
+	padding-left: 30px;
+}
