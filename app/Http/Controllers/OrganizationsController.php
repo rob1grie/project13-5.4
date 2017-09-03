@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use App\State;
+use App\Organization;
+
 class OrganizationsController extends Controller
 {
     /**
@@ -13,7 +16,8 @@ class OrganizationsController extends Controller
      */
     public function index()
     {
-        //
+        $orgs = Organization::all();
+		return view('organization/index', compact('orgs'));
     }
 
     /**

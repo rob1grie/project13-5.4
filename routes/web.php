@@ -15,9 +15,7 @@ Route::get('/', function() {
     return view('welcome');
 });
 
-Route::get('organizations', function () {
-    return view('organizations.index');
-});
+Route::resource('organizations', 'OrganizationsController');
 
 Route::get('members', function () {
     return view('members.index');

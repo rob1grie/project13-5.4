@@ -6,5 +6,16 @@
             <file>file:/opt/lampp/htdocs/project13/app/User.php</file>
             <file>file:/opt/lampp/htdocs/project13/app/Http/Controllers/Auth/RegisterController.php</file>
         </group>
+        <group name="Project13Men">
+            <file>file:/opt/lampp/htdocs/project13/app/Http/Controllers/OrganizationsController.php</file>
+            <file>file:/opt/lampp/htdocs/project13/routes/web.php</file>
+            <file>file:/opt/lampp/htdocs/project13/resources/views/organizations/index.blade.php</file>
+            <file>file:/opt/lampp/htdocs/project13/database/seeds/OrganizationsTableSeeder.php</file>
+            <file>file:/opt/lampp/htdocs/project13/database/migrations/2017_09_02_004705_modify_organizations_columns.php</file>
+            <file>file:/opt/lampp/htdocs/project13/database/migrations/2017_08_25_050656_create_organizations_table.php</file>
+            <file>file:/opt/lampp/htdocs/project13/app/Organization.php</file>
+            <file>file:/opt/lampp/htdocs/project13/composer.json</file>
+            <file>file:/opt/lampp/htdocs/project13/database/seeds/DatabaseSeeder.php</file>
+        </group>
     </open-files>
 </project-private>
