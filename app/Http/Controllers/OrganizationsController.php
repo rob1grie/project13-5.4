@@ -27,7 +27,9 @@ class OrganizationsController extends Controller
      */
     public function create()
     {
-        //
+        $states = State::pluck('abbreviation', 'abbreviation');
+
+        return view('organization/create', compact('states'));
     }
 
     /**
@@ -38,7 +40,19 @@ class OrganizationsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $org = new Organization();
+
+        $org->name = $request->input('name');
+        $org->address1 = $request->input('address1');
+        $org->address2 = $request->input('address2');
+        $org->city = $request->input('city');
+        $org->state = $request->input('state');
+        $org->zipcode = $request->input('zipcode');
+        $org->main_phone = $request->input('main_phone');
+        $org->alt_phone = $request->input('alt_phone');
+        $org->save();
+
+        return \Redirect::route('organizations.show', compact('org'))->with('message', 'Organization Added');
     }
 
     /**
