@@ -17,7 +17,7 @@ class OrganizationsController extends Controller
     public function index()
     {
         $orgs = Organization::all();
-		return view('organization/index', compact('orgs'));
+		return view('organizations/index', compact('orgs'));
     }
 
     /**
@@ -29,7 +29,7 @@ class OrganizationsController extends Controller
     {
         $states = State::pluck('abbreviation', 'abbreviation');
 
-        return view('organization/create', compact('states'));
+        return view('organizations/create', compact('states'));
     }
 
     /**
@@ -67,7 +67,7 @@ class OrganizationsController extends Controller
         $org = Organization::find($id);
         $users = $org->users;
 //        $project13s = $org->project13s;
-        return view('organization/show', compact('org', 'users'));
+        return view('organizations/show', compact('org', 'users'));
 //        return view('organization/show', compact('org', 'users', 'project13s'));
     }
 
