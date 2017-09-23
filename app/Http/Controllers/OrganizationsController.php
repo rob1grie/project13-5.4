@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\State;
 use App\Organization;
+use App\Http\Requests\StoreOrganization;
 
 class OrganizationsController extends Controller
 {
@@ -38,7 +39,7 @@ class OrganizationsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreOrganization $request)
     {
         $org = new Organization();
 

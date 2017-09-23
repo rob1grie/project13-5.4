@@ -40,7 +40,9 @@
 			{!! Form::text('zipcode', 
 			$value=null, 
 			$attributes = ['class' => 'form-control', 'name' => 'zipcode', 'size' => 12]) !!}
-			
+        </div>
+        
+        <div class="form-group">
 			{!! Form::label('main_phone', 'Phone (Main)') !!}
 			{!! Form::text('main_phone',
 			$value=null,
