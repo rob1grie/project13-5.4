@@ -1,6 +1,7 @@
 @extends('layouts.main')
-<?php 
-	// TODO Fix format of form. Address and phone numbers run together
+<?php
+// TODO Fix format of form. Address and phone numbers run together
+
 ?>
 
 @section('title', 'Add Organization')
@@ -10,6 +11,15 @@
 	<div class="panel-heading">
 		<h3 class="panel-title">Add Organization</h3>
 	</div>
+	@if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+				<li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+	@endif
 	<div class="panel-body">
 		{!! Form::open(array('action' => 'OrganizationsController@store', 'enctype' => 'multipart/form-data')) !!}
 		<div class="form-group">
@@ -41,7 +51,7 @@
 			$value=null, 
 			$attributes = ['class' => 'form-control', 'name' => 'zipcode', 'size' => 12]) !!}
         </div>
-        
+
         <div class="form-group">
 			{!! Form::label('main_phone', 'Phone (Main)') !!}
 			{!! Form::text('main_phone',
@@ -55,7 +65,7 @@
 		</div>
 
 		{!! Form::submit('Save', $attributes = ['class' => 'btn btn-primary btn-10rem']) !!}
-		<a class="btn btn-warning btn-10rem" href="{{ URL::previous() }}">Cancel</a>
+		<a class="btn btn-warning btn-10rem" href="/organizations/">Cancel</a>
 
 		{!! Form::close() !!}
 	</div>

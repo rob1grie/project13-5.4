@@ -17,7 +17,7 @@ class OrganizationsController extends Controller
      */
     public function index()
     {
-        $orgs = Organization::all();
+        $orgs = Organization::orderBy('name')->get();
 		return view('organizations/index', compact('orgs'));
     }
 
