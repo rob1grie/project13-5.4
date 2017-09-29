@@ -18,6 +18,7 @@
 	@endif
 	<div class="panel-body">
 		{!! Form::open(array('action' => ['OrganizationsController@update', $org->id], 'method' => 'PUT', 'enctype' => 'multipart/form-data')) !!}
+        {!! Form::hidden('id', $org->id) !!}
 		<div class="form-group">
 			{!! Form::label('name', 'Name', $attributes = ['class' => 'col-md-2 control-label']) !!}
 			{!! Form::text('name', $value=$org->name, $attributes = ['class' => 'form-control', 'name' => 'name']) !!}
