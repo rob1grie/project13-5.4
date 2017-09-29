@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class StoreOrganization extends FormRequest
 {
@@ -26,7 +27,11 @@ class StoreOrganization extends FormRequest
         return [
             // 'title' => 'required|unique:posts|max:255',
             // 'body' => 'required',
-            'name' => 'required|unique:organizations|max:191',
+            'name' => [
+                'required', 
+                Rule::unique('organizations')->ignore('id'),
+                'max:191'
+            ],
             'address1' => 'required|max:128',
             'city' => 'required|max:128',
             'state' => 'required',

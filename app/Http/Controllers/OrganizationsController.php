@@ -80,8 +80,11 @@ class OrganizationsController extends Controller
      */
     public function edit($id)
     {
-        //
-    }
+        $states = State::pluck('abbreviation', 'abbreviation');
+
+        $org = Organization::find($id);
+        return view('organizations/edit', compact('org', 'states'));
+     }
 
     /**
      * Update the specified resource in storage.
@@ -90,9 +93,22 @@ class OrganizationsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(StoreOrganization $request, $id)
     {
-        //
+       $org = Organization::find($id);
+
+        $org->name = $request->input('name');
+        $org->address1 = $request->input('address1');
+        $org->address2 = $request->input('address2');
+        $org->city = $request->input('city');
+        $org->state = $request->input('state');
+        $org->zipcode = $request->input('zipcode');
+        $org->main_phone = $request->input('main_phone');
+        $org->alt_phone = $request->input('alt_phone');
+
+        $org->save();
+
+        return \Redirect::route('organizations.show', compact('org'))->with('message', 'Organization Updated');
     }
 
     /**
