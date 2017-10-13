@@ -27,11 +27,7 @@ class StoreOrganization extends FormRequest
         return [
             // 'title' => 'required|unique:posts|max:255',
             // 'body' => 'required',
-            'name' => [
-                'required', 
-                Rule::unique('organizations')->ignore('id'),
-                'max:191'
-            ],
+            'name' => 'required|max:191|string|unique:organizations,name' . $this->appendUnique('organization'),
             'address1' => 'required|max:128',
             'city' => 'required|max:128',
             'state' => 'required',
@@ -39,4 +35,18 @@ class StoreOrganization extends FormRequest
             'main_phone' => 'required'
         ];
     }
+    
+    protected $updateMethods = ['PUT', 'PATCH'];
+
+    protected function appendUnique($key, $keyName = 'id')
+    {
+        if (in_array($this->method(), $this->updateMethods) && $param = $this->route($key)) {
+            if ($param instanceof Model) {
+                $rt = "{$param->getKey()},{$param->getKeyName()}";
+            } else {
+                $rt = "{$param},{$keyName}";
+            }
+            return ','. $rt;
+        }
+    }    
 }
