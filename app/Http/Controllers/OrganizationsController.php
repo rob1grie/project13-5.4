@@ -1,20 +1,24 @@
 <?php
+
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+
 use App\State;
 use App\Organization;
+use App\Http\Requests\StoreOrganization;
 
-class OrganizationsController extends Controller {
-
+class OrganizationsController extends Controller
+{
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index() {
+    public function index()
+    {
         $orgs = Organization::orderBy('name')->get();
-        return view('organizations/index', compact('orgs'));
+		return view('organizations/index', compact('orgs'));
     }
 
     /**
@@ -22,7 +26,8 @@ class OrganizationsController extends Controller {
      *
      * @return \Illuminate\Http\Response
      */
-    public function create() {
+    public function create()
+    {
         $states = State::pluck('abbreviation', 'abbreviation');
 
         return view('organizations/create', compact('states'));
@@ -34,29 +39,21 @@ class OrganizationsController extends Controller {
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request) {
-        $inputs = $request->all();
+    public function store(StoreOrganization $request)
+    {
+        $org = new Organization();
 
-        $v = Organization::validate($inputs);
+        $org->name = $request->input('name');
+        $org->address1 = $request->input('address1');
+        $org->address2 = $request->input('address2');
+        $org->city = $request->input('city');
+        $org->state = $request->input('state');
+        $org->zipcode = $request->input('zipcode');
+        $org->main_phone = $request->input('main_phone');
+        $org->alt_phone = $request->input('alt_phone');
+        $org->save();
 
-        if ($v->passes()) {
-            $org = new Organization();
-
-            $org->name = $request->input('name');
-            $org->address1 = $request->input('address1');
-            $org->address2 = $request->input('address2');
-            $org->city = $request->input('city');
-            $org->state = $request->input('state');
-            $org->zipcode = $request->input('zipcode');
-            $org->main_phone = $request->input('main_phone');
-            $org->alt_phone = $request->input('alt_phone');
-            $org->save();
-
-            return \Redirect::route('organizations.show', compact('org'))->with('message', 'Organization Added');
-        }
-        else {
-            return \Redirect::route('organizations.create')->withErrors($v->getMessageBag());
-        }
+        return \Redirect::route('organizations.show', compact('org'))->with('message', 'Organization Added');
     }
 
     /**
@@ -65,7 +62,8 @@ class OrganizationsController extends Controller {
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id) {
+    public function show($id)
+    {
         // Show Organization details, along with list of users / Project 13s
         $org = Organization::find($id);
         $users = $org->users;
@@ -80,12 +78,13 @@ class OrganizationsController extends Controller {
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id) {
+    public function edit($id)
+    {
         $states = State::pluck('abbreviation', 'abbreviation');
 
         $org = Organization::find($id);
         return view('organizations/edit', compact('org', 'states'));
-    }
+     }
 
     /**
      * Update the specified resource in storage.
@@ -94,29 +93,22 @@ class OrganizationsController extends Controller {
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id) {
-        $inputs = $request->all();
+    public function update(StoreOrganization $request, $id)
+    {
+       $org = Organization::find($id);
 
-        $v = Organization::validate($inputs);
+        $org->name = $request->input('name');
+        $org->address1 = $request->input('address1');
+        $org->address2 = $request->input('address2');
+        $org->city = $request->input('city');
+        $org->state = $request->input('state');
+        $org->zipcode = $request->input('zipcode');
+        $org->main_phone = $request->input('main_phone');
+        $org->alt_phone = $request->input('alt_phone');
 
-        if ($v->passes()) {
-            $org = Organization::find($id);
+        $org->save();
 
-            $org->name = $request->input('name');
-            $org->address1 = $request->input('address1');
-            $org->address2 = $request->input('address2');
-            $org->city = $request->input('city');
-            $org->state = $request->input('state');
-            $org->zipcode = $request->input('zipcode');
-            $org->main_phone = $request->input('main_phone');
-            $org->alt_phone = $request->input('alt_phone');
-
-            $org->save();
-
-            return \Redirect::route('organizations.show', compact('org'))->with('message', 'Organization Updated');
-        } else {
-            return \Redirect::route('organizations.edit', $id)->withErrors($v->getMessageBag());
-        }
+        return \Redirect::route('organizations.show', compact('org'))->with('message', 'Organization Updated');
     }
 
     /**
@@ -125,8 +117,8 @@ class OrganizationsController extends Controller {
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id) {
+    public function destroy($id)
+    {
         //
     }
-
 }
