@@ -21,9 +21,37 @@ Route::get('members', function () {
     return view('members.index');
 });
 
-Route::get('project13s', function () {
-    return view('project13s.index');
+Route::resource('project13s', 'Project13sController');
+
+/*
+ * Returns JSON data for all Organization members
+ */
+Route::get('/org-members', function() {
+    $org_id = Input::get('org_id');
+
+    $members = App\User::where('organization_id', '=', $org_id)
+            ->orderBy('last_name', 'asc')
+            ->orderBy('first_name', 'asc')
+            ->get();
+
+    return Response::json($members);
 });
+
+/*
+ * Returns JSON data for Organization members that don't belong to a Project 13
+ */
+Route::get('/org-members-no-p13', function() {
+    $org_id = Input::get('org_id');
+
+    $members = App\Member::where('organization_id', '=', $org_id)
+			->where('project13_id', '=', NULL)
+            ->orderBy('last_name', 'asc')
+            ->orderBy('first_name', 'asc')
+            ->get();
+
+    return Response::json($members);	
+});
+
 
 Auth::routes();
 
