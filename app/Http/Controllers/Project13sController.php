@@ -1,25 +1,22 @@
 <?php
-
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
 use App\Project13;
 use App\Organization;
 
-class Project13sController extends Controller
-{
+class Project13sController extends Controller {
+
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-		$project13s = Project13::with(['organization' => function ($query) {
-						$query->orderBy('name');
-					}])->get();
-		return view('project13s/index', compact('project13s'));
+    public function index() {
+        $project13s = Project13::with(['organization' => function ($query) {
+                        $query->orderBy('name');
+                    }])->get();
+        return view('project13s/index', compact('project13s'));
     }
 
     /**
@@ -27,17 +24,16 @@ class Project13sController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
-		$organizations = Organization::pluck('name', 'id')->sort(function($a, $b) {
-			if ($a === $b) {
-				return 0;
-			}
-			return ($a > $b) ? 1 : -1;
-		});
-		$organizations->prepend('[Select the Organization]', 0);
+    public function create() {
+        $organizations = Organization::pluck('name', 'id')->sort(function($a, $b) {
+            if ($a === $b) {
+                return 0;
+            }
+            return ($a > $b) ? 1 : -1;
+        });
+        $organizations->prepend('[Select the Organization]', 0);
 
-		return view('project13s/create', compact('organizations'));
+        return view('project13s/create', compact('organizations'));
     }
 
     /**
@@ -46,8 +42,7 @@ class Project13sController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
+    public function store(Request $request) {
         //
     }
 
@@ -57,8 +52,7 @@ class Project13sController extends Controller
      * @param  \App\Project13  $project13
      * @return \Illuminate\Http\Response
      */
-    public function show(Project13 $project13)
-    {
+    public function show(Project13 $project13) {
         //
     }
 
@@ -68,8 +62,7 @@ class Project13sController extends Controller
      * @param  \App\Project13  $project13
      * @return \Illuminate\Http\Response
      */
-    public function edit(Project13 $project13)
-    {
+    public function edit(Project13 $project13) {
         //
     }
 
@@ -80,8 +73,7 @@ class Project13sController extends Controller
      * @param  \App\Project13  $project13
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Project13 $project13)
-    {
+    public function update(Request $request, Project13 $project13) {
         //
     }
 
@@ -91,8 +83,22 @@ class Project13sController extends Controller
      * @param  \App\Project13  $project13
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Project13 $project13)
-    {
+    public function destroy(Project13 $project13) {
         //
     }
+
+    public function addOrgProject13($id) {
+
+        $organization = Organization::find($id);
+        $members = Project13sController::buildMembersSelect(
+                        Member::select(DB::raw('concat(last_name, \', \', first_name) as name, id'))
+                                ->where('organization_id', '=', $id)
+                                ->where('project13_id', '=', NULL)
+                                ->orderBy('name', 'asc')
+                                ->get()
+        );
+
+        return view('organization/create-p13', compact('organization', 'members'));
+    }
+
 }
