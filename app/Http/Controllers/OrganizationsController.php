@@ -66,9 +66,9 @@ class OrganizationsController extends Controller
     {
         // Show Organization details, along with list of users / Project 13s
         $org = Organization::find($id);
-        $users = $org->users;
+        $members = $org->members;
 //        $project13s = $org->project13s;
-        return view('organizations/show', compact('org', 'users'));
+        return view('organizations/show', compact('org', 'members'));
 //        return view('organization/show', compact('org', 'users', 'project13s'));
     }
 

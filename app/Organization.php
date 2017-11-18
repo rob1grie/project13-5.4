@@ -13,8 +13,8 @@ class Organization extends Model
 	
 	protected $hidden = [];
 
-	public function users() {
-		return $this->hasMany('App\User');
+	public function members() {
+		return $this->hasMany('App\Member');
 	}
 	
 	public function project13s() {

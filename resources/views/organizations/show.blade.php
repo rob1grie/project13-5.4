@@ -56,12 +56,12 @@
 						<th class="center-text">Project 13</th>
 					</tr>
 				</thead>
-				@foreach($users as $user)
+				@foreach($members as $member)
 				<tr>
-					<td>{{$user->last_name}}, {{$user->first_name}}</td>
+					<td>{{$member->last_name}}, {{$member->first_name}}</td>
 					<td class="center-text">
-						@if ($user->project13['ordinal_count'])
-							P13-{{$user->project13["ordinal_count"]}}
+						@if ($member->project13['ordinal_count'])
+							P13-{{$member->project13["ordinal_count"]}}
 						@endif
 					</td>
 				</tr>
