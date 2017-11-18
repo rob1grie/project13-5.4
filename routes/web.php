@@ -43,14 +43,13 @@ Route::get('/org-members', function() {
  */
 Route::get('/org-members-no-p13', function() {
     $org_id = Input::get('org_id');
-
     $members = App\Member::where('organization_id', '=', $org_id)
 			->where('project13_id', '=', NULL)
             ->orderBy('last_name', 'asc')
             ->orderBy('first_name', 'asc')
             ->get();
 
-    return Response::json($members);	
+    return Response::json($members);
 });
 
 

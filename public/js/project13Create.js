@@ -55,6 +55,7 @@ function initSelectControls(orgId, isOrgP13 = false) {
 	var control;
 	var getRoute = isOrgP13 ? '/org-members-no-p13?org_id=' : '/org-members?org_id=';
 	$.get(getRoute + orgId, function (data) {
+        console.log('data');
 		// Initialize availMembers array
 		initAvailMembers(data);
 		// Initialize usedMembers array
@@ -206,6 +207,7 @@ function updateAvailMembers(data) {
 function initAvailMembers(data) {
 // Ensure that availItems is empty
 	availMembers = [];
+        console.log('initAvailMembers');
 	for (var i = 0; i < data.length; i++) {
 		availMembers.push({
 			id: data[i].id,

@@ -17,7 +17,7 @@
         </div>
         <div>
             <div id="test"></div>
-			@include('layouts.p13-selects-table');
+			@include('layouts.p13-selects-table')
         </div>
 
 

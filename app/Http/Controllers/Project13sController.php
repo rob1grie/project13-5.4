@@ -2,8 +2,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Project13;
 use App\Organization;
+use App\Member;
 
 class Project13sController extends Controller {
 
@@ -98,7 +100,17 @@ class Project13sController extends Controller {
                                 ->get()
         );
 
-        return view('organization/create-p13', compact('organization', 'members'));
+        return view('organizations/create-p13', compact('organization', 'members'));
+    }
+
+    protected function buildMembersSelect($members) {
+        // Build an array of name, id elements
+        $array = array();
+        $array[] = ['id' => 0, 'name' => '[Select]'];
+        foreach ($members as $member) {
+            $array[] = ['id' => $member->id, 'name' => $member->name];
+        }
+        return $array;
     }
 
 }
