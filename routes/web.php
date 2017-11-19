@@ -41,7 +41,7 @@ Route::get('/org-members', function() {
 /*
  * Returns JSON data for Organization members that don't belong to a Project 13
  */
-Route::get('/org-members-no-p13', function() {
+Route::get('org-members-no-p13', function() {
     $org_id = Input::get('org_id');
     $members = App\Member::where('organization_id', '=', $org_id)
 			->where('project13_id', '=', NULL)
@@ -49,6 +49,7 @@ Route::get('/org-members-no-p13', function() {
             ->orderBy('first_name', 'asc')
             ->get();
 
+	
     return Response::json($members);
 });
 
