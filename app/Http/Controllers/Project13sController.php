@@ -99,7 +99,6 @@ class Project13sController extends Controller {
                                 ->orderBy('name', 'asc')
                                 ->get()
         );
-
         return view('organizations/create-p13', compact('organization', 'members'));
     }
 

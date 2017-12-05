@@ -53,9 +53,8 @@ $("select[id!='organization']").on('change', function (e) {
  */
 function initSelectControls(orgId, isOrgP13 = false) {
 	var control;
-	var getRoute = isOrgP13 ? 'org-members-no-p13?org_id=' : '/org-members?org_id=';
+	var getRoute = isOrgP13 ? 'org-members-no-p13/org_id/' : '/org-members?org_id=';
 	getRoute += orgId;
-	console.log(getRoute);
 	$.get(getRoute, function (data) {
 		// Initialize availMembers array
 		initAvailMembers(data);
