@@ -99,13 +99,13 @@ class Project13sController extends Controller {
                                 ->orderBy('name', 'asc')
                                 ->get()
         );
+//        return view('organizations/blank', compact('organization', 'members'));
         return view('organizations/create-p13', compact('organization', 'members'));
     }
 
     protected function buildMembersSelect($members) {
         // Build an array of name, id elements
         $array = array();
-        $array[] = ['id' => 0, 'name' => '[Select]'];
         foreach ($members as $member) {
             $array[] = ['id' => $member->id, 'name' => $member->name];
         }

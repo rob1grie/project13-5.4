@@ -34,7 +34,8 @@
 
 	function loadControls() {
 		var id = <?php echo $organization->id; ?>;
-		initSelectControls(id, true);
+		var members = <?php echo json_encode($members); ?>;
+		initSelectControls(members);
 	}
 	
 	function process() {

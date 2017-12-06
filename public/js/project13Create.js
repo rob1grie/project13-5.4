@@ -51,28 +51,28 @@ $("select[id!='organization']").on('change', function (e) {
  * Initialize the select controls, as when a different organization is selected
  * isOrgP13 flags that the controls are on an Organization's Create Project 13 form
  */
-function initSelectControls(orgId, isOrgP13 = false) {
+function initSelectControls(members) {
 	var control;
-	var getRoute = isOrgP13 ? 'org-members-no-p13/org_id/' : '/org-members?org_id=';
-	getRoute += orgId;
-	$.get(getRoute, function (data) {
-		// Initialize availMembers array
-		initAvailMembers(data);
-		// Initialize usedMembers array
-		usedMembers = [];
-		$.each(selectControls, function (index, controlId) {
-			// Use jquery to select the control
-			control = $('#' + controlId.name);
 
-			// Ensure the select control is empty, then add each option to the select
-			control.empty();
-			control.append('<option value="0">[Select]</option>');
-			availMembers.forEach(function (member) {
-				var option = '<option value=' + member.id + '>' + member.name + '</option>';
-				control.append(option);
-			});
+	// Initialize availMembers array
+	initAvailMembers(members);
+
+	// Initialize usedMembers array
+	usedMembers = [];
+
+	$.each(selectControls, function (index, controlId) {
+		// Use jquery to select the control
+		control = $('#' + controlId.name);
+
+		// Ensure the select control is empty, then add each option to the select
+		control.empty();
+		control.append('<option value="0">[Select]</option>');
+		availMembers.forEach(function (member) {
+			var option = '<option value=' + member.id + '>' + member.name + '</option>';
+			control.append(option);
 		});
 	});
+//	});
 }
 
 /*
@@ -146,11 +146,10 @@ function loadMemberSelects() {
 		var member = getSelectMember(selectControl.name);
 		if (!member) {
 			$(sc).val(0);
-		}
-		else {
+		} else {
 			$(sc).val(member.id);
 		}
-		
+
 	});
 }
 
@@ -193,8 +192,7 @@ function buildSelectArray(selectName) {
 function updateAvailMembers(data) {
 	if (availMembers.length === 0) {
 		initAvailMembers(data);
-	}
-	else {
+	} else {
 
 	}
 
@@ -204,14 +202,15 @@ function updateAvailMembers(data) {
  * Initialize availMembers, as when the organization changes
  * data variable is collected in initSelectControls getRoute
  */
-function initAvailMembers(data) {
-// Ensure that availItems is empty
+function initAvailMembers(members) {
+// Ensure that availMembers is empty
 	availMembers = [];
-        console.log('initAvailMembers');
-	for (var i = 0; i < data.length; i++) {
+
+// Then load availMembers from the members array
+	for (var i = 0; i < members.length; i++) {
 		availMembers.push({
-			id: data[i].id,
-			name: data[i].last_name + ', ' + data[i].first_name
+			id: members[i].id,
+			name: members[i].name
 		});
 	}
 }
@@ -221,8 +220,8 @@ function initAvailMembers(data) {
  */
 function addAvailMember(member) {
 	availMembers.push({
-		id:		member.id,
-		name:	member.name
+		id: member.id,
+		name: member.name
 	});
 }
 
@@ -284,14 +283,14 @@ function selectIsUsed(selectName) {
 	// Returns true if select control's name is found in usedMembers
 	var result = false;
 
-	for(var i=0; i<usedMembers.length; i++) {
+	for (var i = 0; i < usedMembers.length; i++) {
 		var usedMember = usedMembers[i];
 		if (usedMember.selectName === selectName) {
 			result = true;
 			break;
 		}
 	}
-	
+
 	return result;
 }
 
@@ -356,7 +355,7 @@ function getSelectMember(selectName) {
  * Set the selected Member with the ID of id
  */
 function setSelectedMembers() {
-	usedMembers.forEach(function(usedMember) {
+	usedMembers.forEach(function (usedMember) {
 		var member = usedMember.usedMember;
 		var selectName = usedMember.selectName;
 		$('#' + selectName).val(member.id);
@@ -380,8 +379,8 @@ function setTestDiv(text) {
 function getResetSelectId(btn) {
 	var name = btn.id;
 	var i = name.indexOf('reset');
-	var selectName = name.substring(0, i-1);
-	
+	var selectName = name.substring(0, i - 1);
+
 	return selectName;
 }
 
@@ -390,13 +389,13 @@ function getResetSelectId(btn) {
  */
 function resetSelect(btn) {
 	var selectName = getResetSelectId(btn);
-	
+
 	var removedMember = removeUsedMember(selectName);
 	addAvailMember(removedMember);
-	
+
 	$("#" + selectName).val(0);
-	
+
 	loadMemberSelects();
-	
+
 	return selectName;
 }
