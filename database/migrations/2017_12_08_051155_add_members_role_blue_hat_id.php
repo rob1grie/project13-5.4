@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddOrgIdToMembers extends Migration
+class AddMembersRoleBlueHatId extends Migration
 {
     /**
      * Run the migrations.
@@ -14,8 +14,8 @@ class AddOrgIdToMembers extends Migration
     public function up()
     {
         Schema::table('members', function (Blueprint $table) {
-			$table->integer('organization_id')->unsigned();
-			$table->foreign('organization_id')->references('id')->on('organizations');
+            $table->integer('blue_hat_id');
+            $table->integer('role_id');
         });
     }
 
@@ -26,9 +26,8 @@ class AddOrgIdToMembers extends Migration
      */
     public function down()
     {
-        Schema::table('members', function (Blueprint $table) {
-			$table->dropForeign(['organization_id']);
-			$table->dropColumn('organization_id');
+        Schema::table('members', function(Blueprint $table) {
+            $table->dropColumn(['blue_hat_id', 'role_id']);
         });
     }
 }

@@ -60,8 +60,8 @@
 				<tr>
 					<td>{{$member->last_name}}, {{$member->first_name}}</td>
 					<td class="center-text">
-						@if ($member->project13['ordinal_count'])
-							P13-{{$member->project13["ordinal_count"]}}
+						@if ($member->project13_id)
+							P13-{{$member->project13_id}}
 						@endif
 					</td>
 				</tr>

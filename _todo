@@ -1,3 +1,5 @@
-Working on creating a Project 13
-    Will need to change User to Member throughout:
+Saving a Project13:
+    Get organization_id
+    Add Project13
+    Step through each select control and update the selected member with the Project13->id
     
