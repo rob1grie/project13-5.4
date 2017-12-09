@@ -27,16 +27,7 @@ Route::resource('project13s', 'Project13sController');
 /*
  * Returns JSON data for all Organization members
  */
-Route::get('/org-members', function() {
-    $org_id = Input::get('org_id');
-
-    $members = App\User::where('organization_id', '=', $org_id)
-            ->orderBy('last_name', 'asc')
-            ->orderBy('first_name', 'asc')
-            ->get();
-
-    return Response::json($members);
-});
+Route::get('/org-members/{org_id}', 'OrganizationsController@getOrgMembers');
 
 /*
  * Returns JSON data for Organization members that don't belong to a Project 13

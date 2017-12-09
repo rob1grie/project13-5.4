@@ -1,24 +1,21 @@
 <?php
-
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
 use App\State;
 use App\Organization;
 use App\Http\Requests\StoreOrganization;
 
-class OrganizationsController extends Controller
-{
+class OrganizationsController extends Controller {
+
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
+    public function index() {
         $orgs = Organization::orderBy('name')->get();
-		return view('organizations/index', compact('orgs'));
+        return view('organizations/index', compact('orgs'));
     }
 
     /**
@@ -26,8 +23,7 @@ class OrganizationsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
+    public function create() {
         $states = State::pluck('abbreviation', 'abbreviation');
 
         return view('organizations/create', compact('states'));
@@ -39,8 +35,7 @@ class OrganizationsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreOrganization $request)
-    {
+    public function store(StoreOrganization $request) {
         $org = new Organization();
 
         $org->name = $request->input('name');
@@ -62,8 +57,7 @@ class OrganizationsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
-    {
+    public function show($id) {
         // Show Organization details, along with list of users / Project 13s
         $org = Organization::find($id);
         $members = $org->members;
@@ -78,13 +72,12 @@ class OrganizationsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
-    {
+    public function edit($id) {
         $states = State::pluck('abbreviation', 'abbreviation');
 
         $org = Organization::find($id);
         return view('organizations/edit', compact('org', 'states'));
-     }
+    }
 
     /**
      * Update the specified resource in storage.
@@ -93,9 +86,8 @@ class OrganizationsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(StoreOrganization $request, $id)
-    {
-       $org = Organization::find($id);
+    public function update(StoreOrganization $request, $id) {
+        $org = Organization::find($id);
 
         $org->name = $request->input('name');
         $org->address1 = $request->input('address1');
@@ -117,8 +109,18 @@ class OrganizationsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
-    {
+    public function destroy($id) {
         //
     }
+
+    public function getOrgMembers($org_id) {
+
+        $members = App\Member::where('organization_id', '=', $org_id)
+                ->orderBy('last_name', 'asc')
+                ->orderBy('first_name', 'asc')
+                ->get();
+
+        return Response::json($members);
+    }
+
 }

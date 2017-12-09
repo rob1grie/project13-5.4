@@ -27,6 +27,14 @@
 @stop
 
 @section('script')
+<script type="text/javascript" src="/js/ajaxJS.js"></script>
+<script type="text/javascript" src="/js/json2.js"></script>
 <script src="/js/project13Create.js" type="text/javascript"></script>
-<script type="text/javascript">	function process() {}</script>
+
+<script type="text/javascript">
+    
+	
+	function process() {
+	}
+</script>
 @stop
