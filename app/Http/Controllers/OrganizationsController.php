@@ -4,7 +4,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\State;
 use App\Organization;
+use Illuminate\Support\Facades\Response;
+
 use App\Http\Requests\StoreOrganization;
+use App\Member;
 
 class OrganizationsController extends Controller {
 
@@ -115,7 +118,7 @@ class OrganizationsController extends Controller {
 
     public function getOrgMembers($org_id) {
 
-        $members = App\Member::where('organization_id', '=', $org_id)
+        $members = Member::where('organization_id', '=', $org_id)
                 ->orderBy('last_name', 'asc')
                 ->orderBy('first_name', 'asc')
                 ->get();
