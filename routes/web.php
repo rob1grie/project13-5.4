@@ -21,7 +21,17 @@ Route::get('members', function () {
     return view('members.index');
 });
 
-Route::get('project13s/{org_id}/addp13', 'Project13sController@addOrgProject13');
+/*
+ * addp13 route takes two required parameters:
+ *	from_create: boolean, 
+ *		True if route is called from the Project 13 'create' view
+ *		False if route is called from an Organization's 'show' view
+ *	org_id: integer,
+ *		Set to the value of:
+ *			The Organization select control if called from the 'create' view
+ *		Set to the value of the Organization's ID if called from its 'show' view
+ */
+Route::get('project13s/addp13/{from_create}/{org_id}', 'Project13sController@addProject13');
 Route::resource('project13s', 'Project13sController');
 
 /*

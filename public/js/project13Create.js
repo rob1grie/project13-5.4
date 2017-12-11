@@ -33,15 +33,28 @@ selectControls.addClass("select-width-100");
  * onChange handler for the organization select control
  */
 $('#organization').on('change', function (e) {
-// When organization changes, need to initialize the member selects
-	var org_id = parseInt(e.target.value);
-	var members;
-	
-	alert('org_id = ' + org_id);
-	members = getOrgMembers(org_id);
-	alert('members = ' + members);
+	/* When organization changes, need to initialize the member selects
+	 * 
+	 *	need to redirect to the addProject13 route with the selected organization
+	 *	Route signature is project13s/addp13/{from_create}/{org_id}, where:
+	 *		from_create =	true if calling from the Project 13 'create' view
+	 *						false if calling from the Organization's 'show' view
+	 *		org_id =		value of organization select if called from the Project 13 'create' view
+	 *						value of organization ID if called from the Organization's 'show' view
+	 *		In this case, from_create is true and org_id is value of organization select
+	 */
 
-	initSelectControls(members);
+	var org_id = parseInt(e.target.value);
+	window.location.replace('/project13s/addp13/true/' + org_id);
+	
+//	var org_id = parseInt(e.target.value);
+//	var members;
+//	
+//	alert('org_id = ' + org_id);
+//	members = getOrgMembers(org_id);
+//	alert('members = ' + members);
+//
+//	initSelectControls(members);
 });
 
 

@@ -1,6 +1,5 @@
 <?php
-echo 'organization: ' . $request->input('organization');
-echo '<br/>white_hat: ' . $request->input('white_hat');
-echo '<br/>blue_hat_1: ' . $request->input('blue_hat_1');
-echo '<br/>yellow_hat_1: ' . $request->input('yellow_hat_1-1');
-echo '<br/>request: ' . $request;
+echo 'from_create: ' . $from_create;
+echo '<br/>organization: ' . $organization;
+echo '<br/>members: ' . var_dump($members);
+echo '<br/>organizations: ' . var_dump($organizations);

@@ -12,7 +12,7 @@
     <div class="list-group">
         <a class="list-group-item" href="create">Add Organization</a>
         <a class="list-group-item" href="{{ $org->id }}/edit">Edit Organization</a>
-        <a class="list-group-item" href="/project13s/{{ $org->id }}/addp13">Add Project13</a>
+        <a class="list-group-item" href="/project13s/addp13/false/{{ $org->id }}">Add Project13</a>
         <a class="list-group-item" href="/organizations/">Return to List</a>
     </div>
 </div>
