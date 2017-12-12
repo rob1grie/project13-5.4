@@ -43,12 +43,6 @@ class Project13sController extends Controller {
 	public function store(Request $request) {
 		$members = $this->getProject13Members($request);
 		
-		$value = Validator::make($members, [
-			'members' => 'min:1'
-		])->validate();
-//		
-//		return;
-//		
 		// Get the selected Organization
 		$orgId = $request->input('organization');
 

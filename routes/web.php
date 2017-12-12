@@ -10,7 +10,10 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+Validator::extend('members_selected', function ($field, $value, $params) {
+	return count($value) > 0;
+});
+ 
 Route::get('/', function() {
     return view('welcome');
 });
