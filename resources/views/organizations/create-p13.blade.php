@@ -5,13 +5,12 @@
 @section('content')
 <div class="panel panel-default">
 	<div class="panel-heading">
-		<h3 class="panel-title">Add Project13</h3>
+		<h2>Add Project13</h2>
 	</div>
 	<div class="panel-body">
-		<?php echo 'from_create: ' . $from_create; ?>
 		{!! Form::open(array('action' => 'Project13sController@store', 'enctype' => 'multipart/form-data')) !!}
 		<div class="form-group">
-			@if ( $from_create )
+			@if ( $from_create == 'true' )
 				{!! Form::label('organization', 'Select Organization: ') !!}
 				{{ Form::select('organization', $organizations, $organization->id) }}
 				{!! Form::hidden('org_p13', FALSE) !!}

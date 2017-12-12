@@ -115,7 +115,7 @@ class Project13sController extends Controller {
 		);
 
 		// $organizations is only used in the form called from the Project 13 'create' view
-		$organizations = [];
+		$organizations = null;
 		if ($from_create) {
 			$organizations = Project13sController::getOrganizationSelect();				
 		}
