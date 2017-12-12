@@ -3,6 +3,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Validator;
 use App\Project13;
 use App\Organization;
 use App\Member;
@@ -41,7 +42,13 @@ class Project13sController extends Controller {
 	 */
 	public function store(Request $request) {
 		$members = $this->getProject13Members($request);
-
+		
+		$value = Validator::make($members, [
+			'members' => 'min:1'
+		])->validate();
+//		
+//		return;
+//		
 		// Get the selected Organization
 		$orgId = $request->input('organization');
 
@@ -119,7 +126,6 @@ class Project13sController extends Controller {
 		if ($from_create) {
 			$organizations = Project13sController::getOrganizationSelect();				
 		}
-//        return view('organizations/blank', compact('from_create', 'organization', 'members', 'organizations'));
 		return view('organizations/create-p13', compact('from_create', 'organization', 'members', 'organizations'));
 	}
 
@@ -133,7 +139,8 @@ class Project13sController extends Controller {
 	}
 
 	protected function getProject13Members($request) {
-		// Build collection of Members with their Role and blue_hat_id
+		// Scan through all request input fields and 
+		// build collection of Members with their Role and blue_hat_id
 		$allInputs = $request->all();
 
 		$keys = array_keys($allInputs);

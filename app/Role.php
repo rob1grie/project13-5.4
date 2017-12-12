@@ -11,7 +11,6 @@ class Role extends Model
 	}
 	
 	public static function getRoleId($role) {
-		var_dump($role);
 		$roles = Role::where('display_name', $role)->get();
 		$roleId = 0;
 		
