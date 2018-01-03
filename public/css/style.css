@@ -79,8 +79,13 @@ div .button-row {
 	float: left;
 }
 
+.subsection-head {
+	line-height: 5em;
+}
+
 .subsection-buttons {
 	float: right;
+	padding-right: 10px;
 }
 
 .dev-border {

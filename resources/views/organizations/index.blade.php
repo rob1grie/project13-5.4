@@ -3,10 +3,10 @@
 @section('title', 'Organizations List')
 
 @section('content')
-<div class="dev-border">
+<div class="subsection-head">
 	<div class="page-title"><h1>Organizations List</h1></div>
 	<div class="subsection-buttons">
-		<a class="btn btn-default" href="{{ URL::to('organizations/create') }}">Add Organization</a>
+		<a class="btn btn-primary" href="{{ URL::to('organizations/create') }}">Add Organization</a>
 	</div>
 </div>
 
