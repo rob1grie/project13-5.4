@@ -1,5 +1,3 @@
-Saving a Project13:
-    Get organization_id
-    Add Project13
-    Step through each select control and update the selected member with the Project13->id
-    
+Add Members
+	From Organization view
+	From Members Index

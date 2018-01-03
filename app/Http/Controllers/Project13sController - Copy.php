@@ -20,15 +20,14 @@ class Project13sController extends Controller {
 		$collection = Project13::with(['organization' => function ($query) {
 						$query->orderBy('name');
 					}])->get();
-
 		$project13s = array();
 
-		foreach ($collection as $project13) {
+		foreach ($project13s as $project13) {
 			if ($project13) {
 				$project13s[] = $project13;
 			}
 		}
-		return view('project13s/index', compact('project13s'));
+		return view('project13s/index', 'project13s');
 	}
 
 	/**

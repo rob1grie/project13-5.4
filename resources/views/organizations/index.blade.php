@@ -2,21 +2,14 @@
 
 @section('title', 'Organizations List')
 
-@section('sidebar')
-<div class="panel panel-primary">
-    <div class="panel-heading">
-        <h3 class="panel-title">
-            Menu
-        </h3>
-    </div>
-    <div class="list-group">
-        <a class="list-group-item" href="{{ URL::to('organizations/create') }}">Add Organization</a>
-    </div>
-</div>
-@stop
-
 @section('content')
-<h1>Organizations List</h1>
+<div class="dev-border">
+	<div class="page-title"><h1>Organizations List</h1></div>
+	<div class="subsection-buttons">
+		<a class="btn btn-default" href="{{ URL::to('organizations/create') }}">Add Organization</a>
+	</div>
+</div>
+
 <table class="table table-hover table-bordered">
     <thead>
         <tr>

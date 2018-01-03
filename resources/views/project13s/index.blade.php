@@ -27,7 +27,7 @@
     <tbody>
         @foreach($project13s as $project13)
         <tr>
-            <td>{{ $project13->organization->name }}</td>
+            <td>{{ $project13->organization['name'] }}</td>
             <td><a href='/project13s/{{ $project13->id }}'>P13-{{ $project13->id }}</a></td>
         </tr>
         @endforeach
