@@ -10,9 +10,9 @@
         <title>Project13Men.org - @yield('title')</title>
 
         <!-- Styles for EasyUI controls -->
-        <link rel="stylesheet" type="text/css" href="http://www.jeasyui.com/easyui/themes/default/easyui.css">
-        <link rel="stylesheet" type="text/css" href="http://www.jeasyui.com/easyui/themes/icon.css">
-        <link rel="stylesheet" type="text/css" href="http://www.jeasyui.com/easyui/themes/color.css">
+        <link rel="stylesheet" type="text/css" href="/easyui/themes/default/easyui.css">
+        <link rel="stylesheet" type="text/css" href="/easyui/themes/icon.css">
+        <link rel="stylesheet" type="text/css" href="/easyui/themes/color.css">
 
         <!-- Bootstrap core CSS -->
         <link href="/css/bootstrap.min.css" rel="stylesheet">
@@ -20,8 +20,8 @@
         <!-- Custom styles for this template -->
         <link href="/css/style.css" rel="stylesheet">
 
-        <script type="text/javascript" src="http://code.jquery.com/jquery-1.6.min.js"></script>
-        <script type="text/javascript" src="http://www.jeasyui.com/easyui/jquery.easyui.min.js"></script>
+        <script type="text/javascript" src="/js/jquery-3.1.0.min.js"></script>
+        <script type="text/javascript" src="/easyui/jquery.easyui.min.js"></script>
 
 
     </head>
