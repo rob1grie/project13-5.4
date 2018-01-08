@@ -17,17 +17,9 @@ class Project13sController extends Controller {
 	 * @return \Illuminate\Http\Response
 	 */
 	public function index() {
-		$collection = Project13::with(['organization' => function ($query) {
+		$project13s = Project13::with(['organization' => function ($query) {
 						$query->orderBy('name');
 					}])->get();
-
-		$project13s = array();
-
-		foreach ($collection as $project13) {
-			if ($project13) {
-				$project13s[] = $project13;
-			}
-		}
 		return view('project13s/index', compact('project13s'));
 	}
 
@@ -38,7 +30,7 @@ class Project13sController extends Controller {
 	 */
 	public function create() {
 		$organizations = Project13sController::getOrganizationSelect();
-
+		
 		return view('project13s/create', compact('organizations'));
 	}
 
@@ -50,7 +42,7 @@ class Project13sController extends Controller {
 	 */
 	public function store(Request $request) {
 		$members = $this->getProject13Members($request);
-
+		
 		// Get the selected Organization
 		$orgId = $request->input('organization');
 
@@ -126,7 +118,7 @@ class Project13sController extends Controller {
 		// $organizations is only used in the form called from the Project 13 'create' view
 		$organizations = null;
 		if ($from_create) {
-			$organizations = Project13sController::getOrganizationSelect();
+			$organizations = Project13sController::getOrganizationSelect();				
 		}
 		return view('organizations/create-p13', compact('from_create', 'organization', 'members', 'organizations'));
 	}
@@ -218,7 +210,7 @@ class Project13sController extends Controller {
 			return ($a > $b) ? 1 : -1;
 		});
 		$organizations->prepend('[Select the Organization]', 0);
-
+		
 		return $organizations;
 	}
 

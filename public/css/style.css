@@ -74,21 +74,3 @@ div .button-row {
 .sub-item {
 	padding-left: 30px;
 }
-
-.page-title {
-	float: left;
-}
-
-.subsection-head {
-	line-height: 5em;
-}
-
-.subsection-buttons {
-	float: right;
-	padding-right: 10px;
-}
-
-.dev-border {
-	/* draw a border to see perimeter of elment */
-	border: 1px solid black;
-}
