@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\State;
 use App\Organization;
+use App\Helpers\Custom;
 use Illuminate\Support\Facades\Response;
 
 use App\Http\Requests\StoreOrganization;
@@ -47,8 +48,8 @@ class OrganizationsController extends Controller {
         $org->city = $request->input('city');
         $org->state = $request->input('state');
         $org->zipcode = $request->input('zipcode');
-        $org->main_phone = $request->input('main_phone');
-        $org->alt_phone = $request->input('alt_phone');
+        $org->main_phone = Custom::removeNonNumeric($request->input('main_phone'));
+        $org->alt_phone = Custom::removeNonNumeric($request->input('alt_phone'));
         $org->save();
 
         return \Redirect::route('organizations.show', compact('org'))->with('message', 'Organization Added');
@@ -98,8 +99,8 @@ class OrganizationsController extends Controller {
         $org->city = $request->input('city');
         $org->state = $request->input('state');
         $org->zipcode = $request->input('zipcode');
-        $org->main_phone = $request->input('main_phone');
-        $org->alt_phone = $request->input('alt_phone');
+        $org->main_phone = Custom::removeNonNumeric($request->input('main_phone'));
+        $org->alt_phone = Custom::removeNonNumeric($request->input('alt_phone'));
 
         $org->save();
 
