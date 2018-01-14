@@ -65,9 +65,9 @@ class OrganizationsController extends Controller {
         // Show Organization details, along with list of users / Project 13s
         $org = Organization::find($id);
         $members = $org->members()->orderBy('last_name')->orderBy('first_name')->get();
-//        $project13s = $org->project13s;
-        return view('organizations/show', compact('org', 'members'));
-//        return view('organization/show', compact('org', 'users', 'project13s'));
+        $project13s = $org->project13s;
+//        return view('organizations/show', compact('org', 'members'));
+        return view('organizations/show', compact('org', 'members', 'project13s'));
     }
 
     /**

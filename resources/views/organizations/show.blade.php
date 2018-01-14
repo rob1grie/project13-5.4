@@ -44,6 +44,9 @@
 	<h4 class="pad-left-20">Project 13s</h4>
 	<div class="panel-body">
 		<div class="row">
+		@foreach($project13s as $project13)
+		P13-{{$project13->id}}<br>
+		@endforeach
 		</div>
 	</div>
 </div>
