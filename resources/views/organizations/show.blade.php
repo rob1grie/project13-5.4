@@ -1,3 +1,5 @@
+<?php use App\Helpers\Custom; ?>
+
 @extends('layouts.main')
 
 @section('title', 'Organization Detail')
@@ -32,9 +34,9 @@
             <div class="col-md-3">&nbsp;</div> 
             <div class="col-md-9">{{ $org->city }}, {{ $org->state }} {{ $org->zipcode }}</div>
             <div class="col-md-3 text-right">Phone (main):</div>
-            <div class="col-md-9">{{ $org->main_phone }}&nbsp;</div>
+            <div class="col-md-9">{{ Custom::formatPhoneNumber($org->main_phone) }}&nbsp;</div>
             <div class="col-md-3 text-right">Phone (alternate):</div>
-            <div class="col-md-9">{{ $org->alt_phone }}&nbsp;</div>
+            <div class="col-md-9">{{ Custom::formatPhoneNumber($org->alt_phone) }}&nbsp;</div>
         </div>
     </div>
 </div>
