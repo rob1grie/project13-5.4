@@ -24,6 +24,13 @@ Route::get('members', function () {
     return view('members.index');
 });
 
+Route::post('member/data', function (Illuminate\Http\Request $request) {
+	$member = new App\Http\Member;
+	print_r($member->getJson($request->all()));
+//	return response()->json($member->getJson($request->all()));
+});
+
+
 /*
  * addp13 route takes two required parameters:
  *	from_create: boolean, 
