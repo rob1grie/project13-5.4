@@ -146,7 +146,7 @@ use App\Helpers\Custom; ?>
 @stop
 
 @section('script')
-<script src="{!! url('assets/plugins/jQuery/jquery-2.2.3.min.js'); !!}"></script>
+<script src="{!! url('js/jquery-3.2.1.js'); !!}"></script>
 <script src="{!! url('assets/bootstrap/js/bootstrap.min.js'); !!}"></script>
 <script src="{!! url('assets/plugins/slimScroll/jquery.slimscroll.min.js'); !!}"></script>
 <script src="{!! url('assets/dist/js/app.min.js'); !!}"></script>
