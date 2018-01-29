@@ -67,6 +67,7 @@ class OrganizationsController extends Controller {
         $members = $org->members()->orderBy('last_name')->orderBy('first_name')->get();
         $project13s = $org->project13s;
 //        return view('organizations/show', compact('org', 'members'));
+//        return view('organizations/show', compact('org', 'project13s'));
         return view('organizations/show', compact('org', 'members', 'project13s'));
     }
 
