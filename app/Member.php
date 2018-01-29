@@ -30,5 +30,9 @@ class Member extends Authenticatable
 	public function organization() {
 		return $this->belongsTo('App\Organization');
 	}
+	
+	public function project13() {
+		return $this->belongsTo('App\Project13');
+	}
 
 }

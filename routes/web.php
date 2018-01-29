@@ -20,9 +20,11 @@ Route::get('/', function() {
 
 Route::resource('organizations', 'OrganizationsController');
 
-Route::get('members', function () {
-    return view('members.index');
-});
+Route::resource('members', 'MembersController');
+
+//Route::get('members', function () {
+//    return view('members.index');
+//});
 
 /*
  * addp13 route takes two required parameters:
