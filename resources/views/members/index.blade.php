@@ -16,8 +16,14 @@
         @foreach($members as $member)
         <tr>
 			<td>{{ $member->last_name . ', ' . $member->first_name }}</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
+            <td>{{ $member->organization->name }}</td>
+            <td>
+				@if($member->project13)
+				P13-{{ $member->project13->id }}
+				@else
+				&nbsp;
+				@endif
+			</td>
         </tr>
         @endforeach
     </tbody>

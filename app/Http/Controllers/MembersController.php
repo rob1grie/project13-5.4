@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
+
+use App\Member;
 
 class MembersController extends Controller
 {
@@ -14,9 +15,11 @@ class MembersController extends Controller
      */
     public function index()
     {
-		$members = DB::table('members')->orderBy('last_name')->orderBy('first_name')->get();
+		$members = Member::with(['organization', 'project13'])
+				->orderBy('last_name')
+				->orderBy('first_name')
+				->get();
 		return view('members/index', compact('members'));
-//		var_dump($members[0]->organization());
     }
 
     /**
