@@ -36,8 +36,10 @@
             </div>
 
         </div>
-        <!--  Custom javascript -->
-        @yield('script')
-
+		<script src="/js/jquery-3.2.1.js" type="text/javascript"></script>
+		<script src="/js/bootstrap.min.js" type="text/javascript"></script>
+		<!--  Custom javascript -->
+		@yield('script')
+		
     </body>
 </html>
