@@ -10,10 +10,15 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+
 Validator::extend('members_selected', function ($field, $value, $params) {
 	return count($value) > 0;
 });
- 
+
+use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Route;
+
 Route::get('/', function() {
     return view('welcome');
 });
